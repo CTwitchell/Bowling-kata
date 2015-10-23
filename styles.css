@@ -1,0 +1,45 @@
+table {
+    width: 75%;
+    margin: auto;
+    text-align: center;
+    
+}
+
+.rolls, .scores{
+background-color:skyblue;
+}
+.rolls td {
+    border-left: 1px solid black;
+    width: 20px;
+    height: 25px;
+}
+
+.scores td {
+ border: 1px solid black;
+ border-right: none;
+ border-top: none;
+ height: 40px;
+}
+
+#total, .final-score {
+    border-right: 1px solid black;
+}
+
+.frames th {
+ border: 1px solid black; 
+ border-right: none;
+    background-color: dodgerblue
+}
+
+.player, .final-score, .second {
+ border-bottom: 1px solid black;   
+}
+
+p {
+ text-align: center;   
+}
+
+.select {
+    width:20%;
+    margin:auto;
+}
