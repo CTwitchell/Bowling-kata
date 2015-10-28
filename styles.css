@@ -39,11 +39,16 @@ h1 {
  text-align: center;
 }
 
-.select {
+.select{
     width:21.5%;
     margin:auto;
 }
 input, #submit {
     display: inline-block;
     
+}
+.button{
+    width:27%;
+    margin:auto;
+    color: darkorange;
 }
