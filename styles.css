@@ -52,3 +52,8 @@ input, #submit {
     margin:auto;
     color: darkorange;
 }
+
+.player {
+  font-size: 20px;
+  font-weight: bold;
+}
