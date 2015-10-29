@@ -1,4 +1,4 @@
-//var entersubmit = keyCode == 13;
+/*globals document, window */
 var nameSubmit = function () {
     if (document.getElementById("userinput").value !== "") {
         document.getElementById("name1").innerHTML = document.getElementById("userinput").value;
@@ -8,12 +8,31 @@ var nameSubmit = function () {
     }
 };
 
-document.getElementById("submit").onclick = nameSubmit;
-//document.getElementById("submit").submit = nameSubmit;
+function entInfo(e) {
+    if (typeof e == 'undefined' && window.event) {
+        e = window.event;
+    }
+    if (e.keyCode == 13 && document.getElementById("userinput").value === "") {
+        return alert("Please Enter A Name.");
+    }
+    if (e.keyCode == 13) {
+        document.getElementById("name1").innerHTML = document.getElementById("userinput").value;
+        document.getElementById("userinput").value = "";
+    }
+}
 
-//var charfield=document.getElementById("char")
-//charfield.onkeydown=function(e){
-//var e=window.event || e;
-//var playerName = document.getElementById("userinput").value
-//document.getElementById("keycode").value=e.keyCode
-//}
+document.getElementById("submit").onclick = nameSubmit;
+var i = 1;
+
+function rolls(e) {
+
+    if (i <= 20 && e !== 10) {
+        document.getElementById("roll" + i).innerHTML = e;
+        i++;
+    }
+    if (i % 2 !== 0 && e == 10) {
+        i++;
+        document.getElementById("roll" + i).innerHTML = "X";
+        i++;
+    }
+}
