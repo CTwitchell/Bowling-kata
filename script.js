@@ -39,50 +39,54 @@ document.getElementById("submit").onclick = nameSubmit;
 
 
 var BowlingGame = [];
+var result = 0;
+var rollIndex = 0;
+var game = this;
+var frameIndex = 0;
 
-BowlingGame.roll = function (pins) {
-    BowlingGame.push (pins);
-};
+function roll(pins) {
+    BowlingGame.push(pins);
+    score();
+}
 
-BowlingGame.score = function () {
-    var result = 0;
-    var rollIndex = 0; 
-    var game = this;
-    for (var frameIndex = 0; frameIndex < 10; frameIndex++) {
-        if (isStrike()){
+function score() {
+    for (frameIndex < 10;;) {
+        if (isStrike()) {
             result += getStrikeScore();
-            documnet.getElementById("roll" + rollIndex).innerHTML = BowlingGame[0];
+            document.getElementById("roll" + rollIndex).innerHTML = BowlingGame[rollIndex];
             rollIndex++;
-            
-        
-        } else if (isSpare()){
+
+        } else if (isSpare()) {
             result += getSpareScore();
-            documnet.getElementById("roll" + rollIndex).innerHTML = BowlingGame[rollIndex];
-            rollIndex +=2;
+            document.getElementById("roll" + rollIndex).innerHTML = BowlingGame[rollIndex];
+            rollIndex += 2;
         } else {
-        result += getNormalScore();
-        documnet.getElementById("roll" + rollIndex).innerHTML = BowlingGame[rollIndex];
-        rollIndex +=2;
+            result += getNormalScore();
+            document.getElementById("roll" + rollIndex).innerHTML = BowlingGame[rollIndex];
+            rollIndex += 2;
         }
-     }
-    
-    return result;
-    
-    function isSpare(){
-        return game.rolls[rollIndex] + game.rolls[rollIndex + 1] ==10;
     }
-    
-    function isStrike(){
-        return game.rolls[rollIndex] == 10;
-    }
-    
-   function getStrikeScore() {
-        return game.rolls[rollIndex] + game.rolls [rollIndex + 1] + game.rolls[rollIndex + 2]; 
-    } 
-    function getSpareScore() {
-        return game.rolls[rollIndex] + game.rolls [rollIndex + 1] + game.rolls[rollIndex + 2]; 
-    }
-    function getNormalScore() {
-       return game.rolls[rollIndex] + game.rolls[rollIndex+1];
-    }
-};
+
+     document.getElementById("final-score").innerHTML = result;
+}
+
+
+function isSpare() {
+    BowlingGame[rollIndex] + BowlingGame[rollIndex + 1] == 10;
+}
+
+function isStrike() {
+    BowlingGame[rollIndex] == 10;
+}
+
+function getStrikeScore() {
+    BowlingGame[rollIndex] + BowlingGame[rollIndex + 1] + BowlingGame[rollIndex + 2];
+}
+
+function getSpareScore() {
+    BowlingGame[rollIndex] + BowlingGame[rollIndex + 1] + BowlingGame[rollIndex + 2];
+}
+
+function getNormalScore() {
+    BowlingGame[rollIndex] + BowlingGame[rollIndex + 1];
+}
