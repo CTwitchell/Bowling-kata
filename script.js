@@ -43,6 +43,7 @@ var result = 0;
 var rollIndex = 0;
 var game = this;
 var frameIndex = 0;
+var frames = [];
 var i = 1;
 
 function roll(pins) {
@@ -52,26 +53,26 @@ function roll(pins) {
 
 function score() {
     for (frameIndex < 10;;) {
-        if (BowlingGame[rollIndex] == 10) {
-            result += getStrikeScore();
+        if (BowlingGame[rollIndex] == 10 && i % 2 !== 0) {
+            result += BowlingGame[rollIndex] + BowlingGame[rollIndex + 1] + BowlingGame[rollIndex + 2];
             i++;
             document.getElementById("roll" + i).innerHTML = "X";
             rollIndex++;
             i++;
-            return
+            return;
 
-        } else if (BowlingGame[rollIndex] + BowlingGame[rollIndex - 1] == 10) {
+        } else if (+BowlingGame[rollIndex - 1] + BowlingGame[rollIndex] == 10 && i % 2 === 0) {
             result += getSpareScore();
             document.getElementById("roll" + i).innerHTML = "/";
             rollIndex ++;
             i++;
-            return
+            return;
         } else {
             result += getNormalScore();
             document.getElementById("roll" + i).innerHTML = BowlingGame[rollIndex];
             rollIndex ++;
             i++;
-            return
+            return;
         }
     }
 
@@ -80,7 +81,7 @@ function score() {
 
 function getStrikeScore() {
     BowlingGame[rollIndex] + BowlingGame[rollIndex + 1] + BowlingGame[rollIndex + 2];
-}
+};
 
 function getSpareScore() {
     BowlingGame[rollIndex] + BowlingGame[rollIndex + 1] + BowlingGame[rollIndex + 2];
